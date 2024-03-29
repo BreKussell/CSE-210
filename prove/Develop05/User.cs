@@ -14,6 +14,7 @@ public static class User
     {
         Score += points;
         CheckLevelUp();
+        DisplayProgressBar(); // Display progress bar after adding points and checking for level up
     }
 
     private static void CheckLevelUp()
@@ -24,6 +25,7 @@ public static class User
             Level++;
             PointsForNextLevel += 500; // Increase the points required for the next level.
             Console.WriteLine($"Level up! {Level}!");
+            DisplayProgressBar(); // Optionally, display the progress bar to show it's reset after leveling up
         }
     }
 
@@ -70,4 +72,19 @@ public static class User
             PointsForNextLevel = userData.PointsForNextLevel;
         }
     }
+    
+    public static void DisplayProgressBar()
+    {
+        // Calculate the percentage of points earned towards the next level
+        double percentage = (double)Score / PointsForNextLevel * 100;
+
+        // Define the length of the progress bar
+        int progressBarLength = 50; // This can be adjusted to your preference
+        int fillLength = (int)(percentage / 100 * progressBarLength);
+        string progressBarFill = new string('=', fillLength);
+        string progressBarEmpty = new string(' ', progressBarLength - fillLength);
+
+        Console.WriteLine($"Level {Level} Progress: [{progressBarFill}{progressBarEmpty}] {percentage:0.00}%");
+    }
+
 }
