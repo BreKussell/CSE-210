@@ -39,6 +39,8 @@ public static class User
 
     public static void ShowScoreAndLevel()
     {
+    
+        DisplayProgressBar();
         Console.WriteLine($"Your current score is: {Score}");
         Console.WriteLine($"Your current level is: {Level}");
         Console.WriteLine($"Points needed for next level: {PointsForNextLevel - Score}");
